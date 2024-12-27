@@ -1,0 +1,248 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpenseEase</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./loginpageee.css">
+    <link rel="stylesheet" href="eef2.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Login Module -->
+    <div id="login-module" style="display: block;">
+        <div class="box-form">
+            <div class="left">
+                <div class="overlay">
+                    <h1>ExpenseEase</h1>
+                    <p>Sign in to ExpenseEase- the easiest way to track your expenses, set budgets, and achieve financial clarity. Start managing your money with ease and confidence.</p>
+                    <span>
+                        <p>Login with social media</p>
+                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> Login with Twitter</a>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="right">
+                <h5>Login</h5>
+                <p>Amazing way to manage your expenses. It takes less than a minute</p>
+                <div class="inputs">
+                    <input type="text" placeholder="User name">
+                    <br>
+                    <input type="password" placeholder="Password">
+                </div>
+                <br><br>
+                <div class="remember-me--forget-password">
+                    <label>
+                        <input type="checkbox" name="item" checked/>
+                        <span class="text-checkbox">Remember me</span>
+                    </label>
+                    <p>Forget password?</p>
+                </div>
+                <br>
+                <button onclick="showDashboard()">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Module -->
+    <div id="dashboard-module" style="display: none;">
+        <header>
+            <h2>ExpenseEase</h2>
+            <button onclick="showSearch()">Search Expenses</button>
+            <button onclick="showReport()">Monthly Report</button>
+        </header>
+
+        <div class="container">
+            <h4>Set Your Income and Monthly Limit</h4>
+            <form id="income-form">
+                <div class="form-control">
+                    <label for="income">Income:</label>
+                    <input type="number" id="income" required>
+                </div>
+                <div class="form-control">
+                    <label for="limit">Monthly Limit:</label>
+                    <input type="number" id="limit" required>
+                </div>
+                <button id="set-income-btn">Set Income and Limit</button>
+            </form>
+            <h4 id="income-display"></h4>
+            <h4 id="limit-display"></h4>
+            <h3>Add Expense</h3>
+            <form id="expense-form">
+                <div class="form-control">
+                    <label for="text">Expense Name:</label>
+                    <input type="text" id="text" required>
+                </div>
+                <div class="form-control">
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="amount" required>
+                </div>
+                <div class="form-control">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-control">
+                    <label for="category">Category:</label>
+                    <select id="category" required>
+                        <option value="Food">Food</option>
+                        <option value="Transportation">Transportation</option>
+                        <option value="Housing">Housing</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <button id="add-expense-btn">Add Expense</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Search Expenses Module -->
+    <div id="search-module" style="display: none;">
+        <header>
+            <h2>Search Expenses</h2>
+            <button onclick="showDashboard()">Back to Dashboard</button>
+        </header>
+
+        <div class="container">
+            <form id="search-form">
+                <div class="form-control">
+                    <label for="search-date">Date:</label>
+                    <input type="date" id="search-date">
+                </div>
+                <div class="form-control">
+                    <label for="search-category">Category:</label>
+                    <select id="search-category">
+                        <option value="">All</option>
+                        <option value="Food">Food</option>
+                        <option value="Transportation">Transportation</option>
+                        <option value="Housing">Housing</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <button id="search-btn">Search</button>
+            </form>
+            <h3>Expenses List</h3>
+            <ul id="expenses-list"></ul>
+        </div>
+    </div>
+
+    <!-- Monthly Report Module -->
+    <div id="report-module" style="display: none;">
+        <header>
+            <h2>Monthly Report</h2>
+            <button onclick="showDashboard()">Back to Dashboard</button>
+        </header>
+
+        <div class="container">
+            <canvas id="monthly-report-chart"></canvas>
+            <form id="update-chart-form">
+                <h3>Update Monthly Report Data</h3>
+                <div class="form-control">
+                    <label for="food-expense">Food:</label>
+                    <input type="number" id="food-expense" placeholder="Enter Food Expense">
+                </div>
+                <div class="form-control">
+                    <label for="transport-expense">Transportation:</label>
+                    <input type="number" id="transport-expense" placeholder="Enter Transportation Expense">
+                </div>
+                <div class="form-control">
+                    <label for="housing-expense">Housing:</label>
+                    <input type="number" id="housing-expense" placeholder="Enter Housing Expense">
+                </div>
+                <div class="form-control">
+                    <label for="entertainment-expense">Entertainment:</label>
+                    <input type="number" id="entertainment-expense" placeholder="Enter Entertainment Expense">
+                </div>
+                <div class="form-control">
+                    <label for="other-expense">Other:</label>
+                    <input type="number" id="other-expense" placeholder="Enter Other Expense">
+                </div>
+                <button type="button" onclick="updateChart()">Update Chart</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let chart;
+
+        function showDashboard() {
+            document.getElementById('login-module').style.display = 'none';
+            document.getElementById('dashboard-module').style.display = 'block';
+            document.getElementById('report-module').style.display = 'none';
+            document.getElementById('search-module').style.display = 'none';
+        }
+
+        function showSearch() {
+            document.getElementById('dashboard-module').style.display = 'none';
+            document.getElementById('search-module').style.display = 'block';
+        }
+
+        function showReport() {
+            document.getElementById('dashboard-module').style.display = 'none';
+            document.getElementById('report-module').style.display = 'block';
+        }
+
+        // Initialize Chart.js
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('monthly-report-chart').getContext('2d');
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Food', 'Transportation', 'Housing', 'Entertainment', 'Other'],
+                    datasets: [{
+                        label: 'Expenses by Category',
+                        data: [300, 150, 500, 200, 100], // Example data, replace with actual data
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+        function updateChart() {
+            const foodExpense = document.getElementById('food-expense').value || 0;
+            const transportExpense = document.getElementById('transport-expense').value || 0;
+            const housingExpense = document.getElementById('housing-expense').value || 0;
+            const entertainmentExpense = document.getElementById('entertainment-expense').value || 0;
+            const otherExpense = document.getElementById('other-expense').value || 0;
+
+            chart.data.datasets[0].data = [
+                parseFloat(foodExpense),
+                parseFloat(transportExpense),
+                parseFloat(housingExpense),
+                parseFloat(entertainmentExpense),
+                parseFloat(otherExpense)
+            ];
+
+            chart.update();
+        }
+    </script>
+
+    <script src="eef2script.js"></script>
+</body>
+</html>

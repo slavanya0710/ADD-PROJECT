@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h2 {
+    margin: 0;
+}
+
+.form-control {
+    margin-bottom: 20px;
+}
+
+.form-control label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form-control input[type="text"],
+.form-control input[type="number"],
+.form-control input[type="date"],
+.form-control select {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+#add-expense-btn,
+#set-income-btn,
+#search-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#add-expense-btn:hover,
+#set-income-btn:hover,
+#search-btn:hover {
+    background-color: #3e8e41;
+}
+
+#expenses-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#expenses-list li {
+    background-color: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#expenses-list li:last-child {
+    border-bottom: none;
+}
+
+#total-expenses,
+#remaining-balance {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
